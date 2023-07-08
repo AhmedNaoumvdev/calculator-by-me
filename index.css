@@ -23,6 +23,7 @@ body{
     border-radius: 10px;
     padding: 10px;
     padding-top: 15px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     display: grid;
     justify-items: center;
     grid-template-columns: repeat(4, 1fr);
@@ -194,4 +195,19 @@ body{
     height: 50px;
     display: grid;
     place-items: center;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+footer img{
+    width: 20px;
+    transition: transform 0.5s;
+}
+
+footer img:hover{
+    transform: rotate(360deg) scale(1.2);
 }
