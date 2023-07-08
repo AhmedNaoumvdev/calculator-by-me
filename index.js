@@ -6,23 +6,21 @@ const displayOperation = document.querySelector('.operation');
 const displayResult = document.querySelector('.result');
 const equals = document.querySelector('.equal');
 
-let firstOperand = [];
-let secondOperand = [];
-let operandSwitch = false;
+
+let expression = [];
 let result = 0;
-let operator;
 
 clear.onclick = function(){
     if(displayOperation.textContent.length > 0) {
         displayOperation.textContent = displayOperation.textContent.substring(0, displayOperation.textContent.length-1);
+        expression.pop();
     }
 }
 
 ac.onclick = function(){
     displayOperation.textContent = '';
     displayResult.textContent = '';
-    firstOperand = [];
-    secondOperand = [];
+    expression = [];
     result = 0;
     operandSwitch = false;
 }
@@ -30,21 +28,15 @@ ac.onclick = function(){
 equals.onclick = doingMath;
 
 function doingMath(operator){
-    if(operator == '+'){
-        result = parseInt(firstOperand.join('')) + parseInt(secondOperand.join(''));
-    }
+    result = eval(expression.join(''));
     displayResult.textContent = result;
 }
 
 numbers.forEach(number =>{
     number.addEventListener('click', (e) =>{
         displayOperation.textContent += number.dataset.value;
-        if(!operandSwitch){
-            firstOperand.push(number.dataset.value);
-        }else{
-            secondOperand.push(number.dataset.value);
-        }
-        console.log(firstOperand, secondOperand)
+        expression.push(number.dataset.value)
+        console.log(expression.join(''));
     })
 });
 
@@ -52,20 +44,16 @@ operators.forEach(opera =>{
     opera.addEventListener('click', () =>{
         if(opera.dataset.op === 'add'){
             displayOperation.textContent += '+';
-            operator = '+';
-            operandSwitch = true;
+            expression.push('+');
         }else if(opera.dataset.op === 'sub'){
             displayOperation.textContent += '-';
-            operator = '-';
-            operandSwitch = true;
+            expression.push('-');
         }else if(opera.dataset.op === 'mul'){
             displayOperation.textContent += 'x';
-            operator = '*';
-            operandSwitch = true;
+            expression.push('*');
         }else{
             displayOperation.textContent += '%';
-            operator = '/';
-            operandSwitch = true;
+            expression.push('/');
         }
     });
 })
