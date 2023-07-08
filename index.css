@@ -30,11 +30,17 @@ body{
     grid-template-rows: 1.5fr repeat(5, 1fr);
     grid-template-areas: 
     "display display display display"
-    "AC AC C mul"
+    "sun AC C mul"
     "seven eight nine div"
     "four five six sub"
     "one two three add"
     "dot zero equal equal";
+}
+
+.mark{
+    grid-area: sun;
+    font-size: 30px;
+    margin-top: 7px;
 }
 
 .display{
@@ -68,8 +74,8 @@ body{
     grid-area: AC;
     cursor: pointer;
     background-color: rgb(245, 53, 53);
-    width: 85%;
-    border-radius: 10px;
+    width: 50px;
+    border-radius: 50%;
     height: 50px;
     display: grid;
     place-items: center;
